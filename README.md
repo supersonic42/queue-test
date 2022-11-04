@@ -24,7 +24,7 @@
     2. composer install
     3. php producer.php
     4.1 php consumer.php queue_odd
-    5.2 php consumer.php queue_even
+    4.2 php consumer.php queue_even
 
 Дополнительные требования:
     
