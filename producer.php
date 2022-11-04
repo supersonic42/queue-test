@@ -1,9 +1,10 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+use App\QueueHelper;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
-use App\QueueHelper;
 
 $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
 $channel = $connection->channel();
@@ -26,7 +27,10 @@ while ($eventCount) {
         'event_id' => $eventId,
     ];
 
-    $queueName = $data['user_id'] % 2 == 0 ? QueueHelper::QUEUE_EVEN : QueueHelper::QUEUE_ODD;
+    $queueName = $data['user_id'] % 2 == 0
+        ? QueueHelper::QUEUE_EVEN
+        : QueueHelper::QUEUE_ODD;
+
     $queueNameFormatted = str_pad($queueName, max(strlen(QueueHelper::QUEUE_EVEN), strlen(QueueHelper::QUEUE_ODD)), ' ');
 
     $msgStr = json_encode($data);

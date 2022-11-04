@@ -22,7 +22,7 @@
 
     1. docker-compose up
     2. composer install
-    3. php publisher.php
+    3. php producer.php
     4.1 php consumer.php queue_odd
     5.2 php consumer.php queue_even
 
